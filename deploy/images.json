@@ -1,0 +1,10 @@
+{
+  "alist": {
+    "upstream": "docker.io/xhofe/alist:v3.63.0@sha256:e8d255bf64eef6c3934d22bff471126b26b1e4abf956550589a2a73412cabf77",
+    "localAlias": "localhost/hsa-alist:3.63.0"
+  },
+  "jellyfin": {
+    "upstream": "docker.io/jellyfin/jellyfin:12.4@sha256:fea863d0cd9ec445985d9c75fc6ed64e38a1d2766cf0c250a33d553f4fc1b771",
+    "localAlias": "localhost/hsa-jellyfin:12.4"
+  }
+}

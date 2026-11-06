@@ -1,0 +1,14 @@
+.git
+node_modules
+web/node_modules
+web/dist
+/images
+/scripts/*.local
+deploy/*.tar
+*.tar
+*.db
+*.db-wal
+*.db-shm
+/config
+/state
+/files

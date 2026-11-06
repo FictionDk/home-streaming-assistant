@@ -1,0 +1,6 @@
+[Unit]
+Description=Cloud media private bridge network
+
+[Network]
+NetworkName=cloud-media
+Options=isolate=false

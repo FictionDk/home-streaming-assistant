@@ -1,0 +1,29 @@
+[Unit]
+Description=Jellyfin for home-streaming-assistant
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+ContainerName=jellyfin
+Image=localhost/hsa-jellyfin:12.4
+Pull=never
+Network=cloud-media.network
+HostName=jellyfin
+# First bootstrap binds loopback only; the publish drop-in installed after
+# wizard completion opens the LAN/Tailscale addresses.
+PublishPort=127.0.0.1:8096:8096
+Volume=/srv/cloud-media/jellyfin-config:/config:rw
+Volume=/srv/cloud-media/jellyfin-cache:/cache:rw
+Volume=/srv/cloud-media/files/media:/media:ro
+User=10001:10001
+ReadOnly=true
+Tmpfs=/tmp:rw,size=512m,noexec
+NoNewPrivileges=true
+
+[Service]
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=120
+
+[Install]
+WantedBy=default.target

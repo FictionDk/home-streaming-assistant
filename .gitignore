@@ -1,0 +1,13 @@
+node_modules/
+web/dist/
+/bin/
+*.db
+*.db-wal
+*.db-shm
+*.tar
+/images/
+/state/
+/files/
+/config/
+*.conf.local
+.env

@@ -1,0 +1,25 @@
+[Unit]
+Description=Alist for home-streaming-assistant (AliyundriveOpen gateway)
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+ContainerName=alist
+Image=localhost/hsa-alist:3.63.0
+Pull=never
+Network=cloud-media.network
+HostName=alist
+PublishPort=127.0.0.1:5244:5244
+Volume=/srv/cloud-media/alist-data:/opt/alist/data:rw
+LogDriver=k8s-file
+LogOpt=path=/srv/cloud-media/alist-logs/container.log
+# Container root maps to the rootless user (hek); the image defaults apply.
+NoNewPrivileges=true
+
+[Service]
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=120
+
+[Install]
+WantedBy=default.target

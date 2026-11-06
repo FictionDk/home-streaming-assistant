@@ -1,0 +1,32 @@
+[Unit]
+Description=home-streaming-assistant application server
+# Startup ordering only; source/API readiness is handled by the app.
+After=alist.service jellyfin.service
+Wants=alist.service jellyfin.service
+
+[Container]
+ContainerName=home-streaming-assistant
+Image=@APP_IMAGE@
+Pull=never
+Network=cloud-media.network
+HostName=home-streaming-assistant
+User=10001:10001
+ReadOnly=true
+Tmpfs=/tmp:rw,size=256m,noexec
+PublishPort=192.168.200.175:8080:8080
+PublishPort=100.75.124.126:8080:8080
+Volume=/srv/cloud-media/app-config:/config/app:ro
+Volume=/srv/cloud-media/rclone:/config/rclone:rw
+Volume=/srv/cloud-media/state:/data/state:rw
+Volume=/srv/cloud-media/files:/data/files:rw
+StopTimeout=20
+NoNewPrivileges=true
+
+[Service]
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=default.target
