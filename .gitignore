@@ -1,13 +1,45 @@
-node_modules/
-web/dist/
+# --- 构建产物 ---
+# Go 可执行文件（本地构建）与前端 Vite 产物（go:embed 前生成，不入库）
 /bin/
+web/dist/
+# podman save 产物（镜像离线交付）
+*.tar
+
+# --- Go ---
+*.test
+*.prof
+coverage.out
+
+# --- 依赖 ---
+node_modules/
+
+# --- 运行时数据 ---
+# SQLite 数据库及 WAL/SHM
 *.db
 *.db-wal
 *.db-shm
-*.tar
+# 本地运行的数据/状态/配置目录与生成的应用配置（凭证）
 /images/
 /state/
 /files/
 /config/
-*.conf.local
+config.json
+
+# --- 凭证与本地覆盖 ---
 .env
+.env.*
+# rclone 配置（WebDAV 账号、Google OAuth token）
+rclone.conf
+rclone.conf.*
+# 各类 *.local 覆盖（脚本私有参数、配置本地覆盖）
+*.conf.local
+scripts/*.local
+
+# --- 日志 ---
+*.log
+
+# --- 编辑器与系统文件 ---
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
